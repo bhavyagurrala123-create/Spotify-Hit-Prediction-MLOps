@@ -1,0 +1,51 @@
+# Spotify Hit Prediction - end-to-end MLOps pipeline configuration
+#
+# Problem: predict whether a track will be a "Hit" (popularity >= 50) from its audio features
+# and genre.  "Hit" plays the role that "Churn" played in the Telco template.
+
+data:
+  raw_path: data/raw/spotify_tracks.csv
+  new_batch_name: new_tracks.csv      # dropped next to raw_path to trigger ingestion
+  processed_dir: data/processed
+  target_column: Hit                  # "Yes" / "No"
+  id_column: track_id
+  leakage_columns: [popularity]       # the target is derived from these -> never features
+  text_columns: [artists, album_name, track_name]   # identifiers, too high-cardinality for OHE
+  hit_threshold: 50
+
+split:
+  test_size: 0.2
+  random_state: 42
+
+model:
+  n_estimators: 200
+  max_depth: 14
+  min_samples_leaf: 5
+  random_state: 42
+  class_weight: balanced
+  n_jobs: -1
+
+mlflow:
+  # Leave empty for local MLflow. For GitHub Actions, set the
+  # MLFLOW_TRACKING_URI environment variable or put a server URI here.
+  tracking_uri: ""
+  experiment_name: spotify_hit_prediction_training
+
+registry:
+  model_name: Spotify_Hit_Production_Model
+  decision_metric: recall
+
+quality_gate:
+  metric: recall
+  minimum_value: 0.70     # same as the Telco template; the RandomForest reaches ~0.77 recall on this data
+
+lab9:
+  repetitions: 3
+
+paths:
+  preprocessor: models/preprocessor.pkl
+  model: models/hit_model.pkl
+  evaluation_report: reports/evaluation_report.json
+  quality_gate_report: reports/quality_gate_report.json
+  failure_report: reports/failure_report.json
+  inference_output: outputs/inference_predictions.csv

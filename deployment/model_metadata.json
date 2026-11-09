@@ -1,0 +1,10 @@
+{
+    "model_name": "Spotify_Hit_Production_Model",
+    "model_version": "1",
+    "model_stage": "Production",
+    "run_id": "550b75977f35481ab05d9a518b5f81ff",
+    "model_source": "models:/m-7db22ccc87a240f88150c3455e0770bd",
+    "model_id": "m-7db22ccc87a240f88150c3455e0770bd",
+    "preprocessor_artifact": "preprocessing_pipeline/preprocessor.pkl",
+    "source": "MLflow"
+}

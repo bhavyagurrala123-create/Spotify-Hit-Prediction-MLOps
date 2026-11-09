@@ -1,0 +1,45 @@
+{
+    "dataset_name": "Spotify Hit Prediction",
+    "target_column": "Hit",
+    "train_shape_raw": [
+        64612,
+        15
+    ],
+    "test_shape_raw": [
+        16154,
+        15
+    ],
+    "train_shape_transformed": [
+        64612,
+        139
+    ],
+    "test_shape_transformed": [
+        16154,
+        139
+    ],
+    "numerical_features": [
+        "duration_ms",
+        "danceability",
+        "energy",
+        "loudness",
+        "mode",
+        "speechiness",
+        "acousticness",
+        "instrumentalness",
+        "liveness",
+        "valence",
+        "tempo"
+    ],
+    "categorical_features": [
+        "track_genre",
+        "explicit",
+        "key",
+        "time_signature"
+    ],
+    "split_test_size": 0.2,
+    "split_random_state": 42,
+    "fixed_test_set": true,
+    "test_track_ids_path": "data/processed\\test_track_ids.csv",
+    "raw_train_path": "data/processed\\X_train_raw.csv",
+    "raw_test_path": "data/processed\\X_test_raw.csv"
+}

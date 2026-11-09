@@ -1,0 +1,13 @@
+{
+    "status": "success",
+    "model_name": "Spotify_Hit_Production_Model",
+    "decision_metric": "recall",
+    "candidate_version": 1,
+    "candidate_run_id": "550b75977f35481ab05d9a518b5f81ff",
+    "candidate_metric": 0.7725019566918863,
+    "production_version_before": null,
+    "production_metric_before": null,
+    "promoted": true,
+    "decision": "PROMOTED",
+    "production_version_after": 1
+}

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hit-api
+  labels:
+    app: hit-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hit-api
+  template:
+    metadata:
+      labels:
+        app: hit-api
+    spec:
+      containers:
+        - name: hit-api
+          image: spotify-hit-api:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
